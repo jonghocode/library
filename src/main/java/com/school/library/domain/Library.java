@@ -13,8 +13,7 @@ public class Library {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "library_id")
-    private int id;
+    private int libraryId;
 
     @ManyToOne
     @JoinColumn(name="member_id")
