@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class MemberService {
 
-    private MemberRepository memberRepository;
+    private final MemberRepository memberRepository;
 
     /**
      * 아이디 중복 체크
@@ -57,6 +57,7 @@ public class MemberService {
      * @return
      */
     public ResponseDto login(LoginDto loginDto) {
+        System.out.println(loginDto.getId());
         Member member = memberRepository.findById(loginDto.getId()).orElse(null);
         if (member == null) {
             return ResponseDto.builder().msg("아이디가 존재하지 않습니다.").status(HttpStatus.BAD_REQUEST).build();
@@ -66,4 +67,7 @@ public class MemberService {
         }
         return ResponseDto.builder().msg("로그인 성공").status(HttpStatus.OK).build();
     }
+
+
+
 }

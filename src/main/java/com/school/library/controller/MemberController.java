@@ -5,16 +5,14 @@ import com.school.library.dto.MemberDto;
 import com.school.library.dto.ResponseDto;
 import com.school.library.service.MemberService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class MemberController {
 
-    private MemberService memberService;
+    private final MemberService memberService;
 
     /**
      * 아이디 중복 체크
@@ -31,7 +29,7 @@ public class MemberController {
      * @param memberDto
      */
     @PostMapping("/member")
-    public void memberAdd(MemberDto memberDto) {
+    public void memberAdd(@RequestBody MemberDto memberDto) {
         memberService.addMember(memberDto);
     }
 
@@ -41,6 +39,7 @@ public class MemberController {
      * @param id
      * @return
      */
+    @GetMapping("/member")
     public MemberDto memberFind(String id) {
         return memberService.findMember(id);
     }
@@ -50,7 +49,8 @@ public class MemberController {
      * @param loginDto
      * @return
      */
-    public ResponseDto login(LoginDto loginDto) {
+    @PostMapping("/login")
+    public ResponseDto login(@RequestBody LoginDto loginDto) {
         return memberService.login(loginDto);
     }
 }
