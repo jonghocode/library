@@ -7,7 +7,6 @@ function App() {
   return (
     <Router>
       <div>
-        백엔드에서 가져온 데이터입니다 : {/* {hello} 이 부분에 실제 데이터 삽입 */}
       </div>
       <Routes>
         <Route path="/" element={<Login />} />
