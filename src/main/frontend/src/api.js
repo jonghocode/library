@@ -44,3 +44,14 @@ export async function loginCheck(id, pw, history) {
         console.log(error)
     })
 }
+
+// 자리 조회(메인 화면)
+export async function seetList() {
+    await axios.get(server + "/seet")
+    .then((res) => {
+        console.log(res.data)
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+}
