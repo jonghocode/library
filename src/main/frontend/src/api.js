@@ -46,8 +46,20 @@ export async function loginCheck(id, pw, history) {
 }
 
 // 자리 조회(메인 화면)
-export async function seetList() {
+export async function seetList(setSeet) {
     await axios.get(server + "/seet")
+    .then((res) => {
+        setSeet(res.data)
+        console.log(res.data)
+    })
+    .catch((error) => {
+        console.log(error)
+    })
+}
+
+// 자리 예약
+export async function seetAdd() {
+    await axios.post(server + "/seet")
     .then((res) => {
         console.log(res.data)
     })
